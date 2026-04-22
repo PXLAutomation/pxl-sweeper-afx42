@@ -28,7 +28,56 @@
 
 ---
 
-## Phase 2 — Core game logic (headless) ✅
+## Phase 3 — Rendering and Interaction ✅
+
+**Completed**: 2026-04-22
+
+### Deliverables
+- `render.js` — new file: pure state-to-DOM projection (`render()`), visual state derivation (`_visualState()`), and all DOM event wiring (DOMContentLoaded)
+- `style.css` — 6 tile state classes + body win/loss indicators + pointer-events grid lock
+- `index.html` — added `<script defer src="render.js"></script>` after game.js
+
+### Architecture
+- `render.js` reads exclusively from `window.Game` API; contains zero game logic
+- Event delegation on `#grid` (one `click` + one `contextmenu` listener, not 100)
+- `contextmenu` scoped to `#grid` only — right-click outside grid is not suppressed
+- Input lock via CSS `pointer-events: none` on `body.state--win/loss #grid`; mascot unaffected
+- ARIA announcements fire only on phase transition (not on every render call)
+- `game.js` untouched — `window.Game` API is the stable contract
+
+### Visual state mapping (6 states from 3 game states)
+| game state | phase | isMine | CSS class         |
+|------------|-------|--------|-------------------|
+| hidden     | any   | false  | `tile--hidden`    |
+| hidden     | lost  | true   | `tile--mine`      |
+| flagged    | any   | any    | `tile--flagged`   |
+| flagged    | lost  | false  | `tile--wrong-flag`|
+| revealed   | any   | false  | `tile--revealed`  |
+| revealed   | lost  | true   | `tile--mine`      |
+
+### Verification
+- 7 grep checks (G1–G7): all passed
+- 35 Node.js assertions (custom DOM stub): 35 passed, 0 failed
+  - C1: initial DOM state — all 100 tiles hidden, counter 15, no body classes, data-state/count set
+  - C2: reveal and flag — phase transitions, mine counter, flag toggle
+  - C3: flagged tile blocks reveal — noop confirmed
+  - C4: loss state — body class, mine tiles, ARIA announcement
+  - C5: win state — body class, ARIA announcement
+  - C6: new game reset — all state cleared, counter reset, ARIA cleared
+  - C7: mine counter negative (16 flags → -1)
+  - Extra: wrong-flag rendering, ARIA one-shot (no re-announce on second render)
+
+### Decisions recorded
+- `_visualState()` is a pure function — no DOM access; maps tile+phase→visual state string
+- Phase 3 mine background (#f4827a) is identical for triggered and passive mines; Phase 4/5 will distinguish via `data-triggered="true"`
+- Body outline (`outline: 3px solid`) used as Phase 3 placeholder for win/loss indicator; replaced in Phase 4
+
+### Deferred to later phases
+- Raised tile effect, number colors, pixel font → Phase 4
+- Flag pennant sprite, donut sprites, mascot face states → Phase 5
+- Mascot surprised/win/loss state wiring → Phase 5
+- Touch long-press (mobile flagging) → Phase 6
+- Tile reveal animation → Phase 7
 
 **Completed**: 2026-04-22
 

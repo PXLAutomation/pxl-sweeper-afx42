@@ -66,6 +66,50 @@ body {
   image-rendering: pixelated;
 }
 
+/* === Tile state classes (Phase 3) === */
+
+.tile--hidden {
+  background: var(--color-peach);
+  cursor: pointer;
+}
+
+.tile--revealed {
+  background: #e8d8c0;
+  cursor: default;
+}
+
+.tile--flagged {
+  background: var(--color-peach);
+  cursor: pointer;
+}
+
+.tile--mine {
+  background: #f4827a;
+  cursor: default;
+}
+
+.tile--wrong-flag {
+  background: #f4827a;
+  cursor: default;
+}
+
+/* === Game end state indicators (Phase 3 placeholders) === */
+
+body.state--win {
+  outline: 3px solid var(--color-mint);
+}
+
+body.state--loss {
+  outline: 3px solid #f4827a;
+}
+
+/* === Input lock on game end (mascot remains active) === */
+
+body.state--win #grid,
+body.state--loss #grid {
+  pointer-events: none;
+}
+
 /* Screen-reader only utility */
 .sr-only {
   position: absolute;
