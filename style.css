@@ -1,0 +1,80 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-mint:        #b5ead7;
+  --color-peach:       #ffb7b2;
+  --color-lavender:    #c7b4f0;
+  --color-baby-blue:   #aec6cf;
+  --color-soft-yellow: #fffacd;
+
+  --color-bg:          #f8f4fb;
+  --color-topbar-bg:   #ede8f5;
+
+  --tile-size: 48px;
+}
+
+body {
+  background: var(--color-bg);
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#status-bar {
+  display: flex;
+  align-items: center;
+  width: calc(var(--tile-size) * 10);
+  background: var(--color-topbar-bg);
+  padding: 8px;
+}
+
+#mine-counter {
+  flex: 1;
+}
+
+#mascot {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.status-bar__spacer {
+  flex: 1;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(10, var(--tile-size));
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
+}
+
+.tile {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  background: #ddd;
+  border: 1px solid #bbb;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

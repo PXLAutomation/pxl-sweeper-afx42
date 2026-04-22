@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PXL Sweeper</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="status-bar" role="banner">
+    <div id="mine-counter" aria-label="Mines remaining">15</div>
+    <button id="mascot" aria-label="New Game">🍩</button>
+    <div class="status-bar__spacer"></div>
+  </div>
+
+  <main>
+    <div id="grid" role="grid" aria-label="Minesweeper board"></div>
+  </main>
+
+  <div id="aria-announcer" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+  <script defer src="game.js"></script>
+</body>
+</html>
