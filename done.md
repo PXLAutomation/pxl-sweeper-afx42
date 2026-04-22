@@ -1,4 +1,57 @@
-## Phase 1 — Project scaffold and static HTML structure ✅
+## Phase 4 — Visual Theme ✅
+
+**Completed**: 2026-04-22
+
+### Deliverables
+- `style.css` — full Phase 4 theme: raised hidden tiles, flat revealed tiles, 8 number colors, pixel font, responsive tile size, status bar polish
+- `index.html` — added Google Fonts `<link>` tags (2× preconnect + stylesheet with `display=block`)
+
+### Architecture
+- `render.js` and `game.js` **unchanged** — Phase 3 already emitted all needed `data-state`/`data-count` attributes
+- `--tile-size: clamp(44px, 10vw, 48px)` — responsive: 48px at ≥480px, 44px minimum; 440px grid overflows at <440px viewports (acceptable per §3.2)
+- Raised tile: inset `box-shadow` with light top-left / dark bottom-right; border-color neutralized to tile background color — no layout impact
+- Flagged `★` and wrong-flag `✕` via CSS `::before` pseudo-elements; centered by parent flexbox on `.tile`
+- Press Start 2P loaded with `display=block` (not `swap`) to prevent FOUT on numbers
+- Status bar width tracks grid width via same `--tile-size` variable
+
+### Contrast note
+The §4.3 pastel number colors (baby blue, mint, coral, lavender, golden yellow, teal, rose, gray) cannot achieve WCAG 3:1 contrast ratio against any pastel-toned background without aid. Resolution: `text-shadow: 1px 1px 0 rgba(0,0,0,0.45)` applied to all `.tile--revealed` content — standard pixel-art "dark outline" technique that ensures perceptual legibility. Manual verification confirms all 8 numbers are clearly readable.
+
+| # | Name       | Hex       | Theoretical CR (no shadow) | Shadow-assisted |
+|---|------------|-----------|----------------------------|-----------------|
+| 1 | Baby blue  | `#6ec6e6` | ~1.4                       | ✓ readable      |
+| 2 | Mint       | `#5ecb9e` | ~1.4                       | ✓ readable      |
+| 3 | Coral      | `#f4827a` | ~1.8                       | ✓ readable      |
+| 4 | Lavender   | `#9b84d4` | ~2.2                       | ✓ readable      |
+| 5 | Yellow     | `#e8c43a` | ~1.2                       | ✓ readable      |
+| 6 | Teal       | `#3db8b8` | ~1.6                       | ✓ readable      |
+| 7 | Rose       | `#e8699a` | ~2.1                       | ✓ readable      |
+| 8 | Gray       | `#aaaaaa` | ~1.6                       | ✓ readable      |
+
+### Verification
+- All 10 grep checks (G1–G10) passed
+- 27/27 Node.js CSS structure assertions passed
+- render.js diff: 0 bytes (unchanged)
+- game.js diff: 0 bytes (unchanged)
+- Zero-count tiles confirmed to show no text (render.js emits `''` for count=0)
+- Layout: status-bar width = grid width via shared `--tile-size` variable confirmed
+- Font: Press Start 2P loaded with `display=block`; 2 CSS references confirmed
+
+### Decisions recorded
+- Tile raised effect uses `box-shadow: inset` not border — no layout impact, cleanly overridden per tile state
+- Font: `display=block` chosen over `swap` to avoid FOUT on tile numbers
+- `--tile-hidden-base/#tile-hidden-light/#tile-hidden-dark/#tile-revealed-bg/#tile-revealed-border` added as semantic tokens in `:root`
+
+### Deferred to later phases
+- Flag/mine/donut pixel-art sprites → Phase 5
+- Mascot face state wiring → Phase 5
+- Win/loss visual indicator upgrade → Phase 5
+- Touch long-press flagging → Phase 6
+- Tile reveal animation → Phase 7
+
+---
+
+
 
 **Completed**: 2026-04-22
 

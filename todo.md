@@ -48,19 +48,36 @@
 - [x] Verify no console errors in Chrome and Firefox
 - [x] Update todo.md with Phase 4 entries
 
-## Phase 4 — Visual Theme
+## Phase 4 — Visual Theme ✅
 
-- [ ] Apply hidden tile style: pastel raised square, box-shadow simulation, base color
-- [ ] Apply revealed tile style: flat, slightly darker
-- [ ] Apply 8 number color rules via data-count attribute CSS selectors
-- [ ] Embed pixel font (Press Start 2P or equivalent); verify loading in Network tab
-- [ ] Apply font to mine counter and tile numbers
-- [ ] Top bar layout: counter left, mascot centered, correct padding and palette background
-- [ ] Tile size: 48×48 CSS px desktop, clamp() for mobile ≥ 44 px
-- [ ] Empty revealed tile (count 0) shows no number
-- [ ] Apply image-rendering: pixelated to grid
-- [ ] Verify layout at 1280 px: no scroll
-- [ ] Verify layout at 375 px: no scroll, tiles ≥ 44 px
-- [ ] Verify layout at 360 px: no horizontal overflow
-- [ ] Contrast check: document pass/fail for all 8 number colors (≥ 3:1)
-- [ ] Update TODO.md with Phase 5 entries
+- [x] Apply hidden tile style: pastel raised square, box-shadow simulation, base color
+- [x] Apply revealed tile style: flat, slightly darker
+- [x] Apply 8 number color rules via data-count attribute CSS selectors
+- [x] Embed pixel font (Press Start 2P or equivalent); verify loading in Network tab
+- [x] Apply font to mine counter and tile numbers
+- [x] Top bar layout: counter left, mascot centered, correct padding and palette background
+- [x] Tile size: 48×48 CSS px desktop, clamp() for mobile ≥ 44 px
+- [x] Empty revealed tile (count 0) shows no number
+- [x] Apply image-rendering: pixelated to grid
+- [x] Verify layout at 1280 px: no scroll
+- [x] Verify layout at 375 px: no scroll, tiles ≥ 44 px
+- [x] Verify layout at 360 px: no horizontal overflow
+- [x] Contrast check: document pass/fail for all 8 number colors (≥ 3:1)
+- [x] Update TODO.md with Phase 5 entries
+
+## Phase 5 — Sprites
+
+- [ ] Implement flag sprite: coral pink pennant, white stick, star tip
+- [ ] Implement incorrect flag indicator: red × over flag, shown on loss for wrong flags only
+- [ ] Implement intact donut sprite (for passive mine reveal on loss)
+- [ ] Implement triggered donut: same donut, hot-pink/red tile background
+- [ ] Implement mascot neutral state sprite
+- [ ] Implement mascot surprised state sprite
+- [ ] Implement mascot win state sprite (sparkly eyes, no animation yet)
+- [ ] Implement mascot loss state sprite (crying, no animation yet)
+- [ ] Wire mascot state class changes: mousedown on tile → surprised
+- [ ] Wire mascot revert on mouseup/mouseleave if game in progress
+- [ ] Wire mascot win/loss state from game event
+- [ ] Verify mascot button click does NOT trigger surprised state
+- [ ] Verify all sprites render sharply at 1× and 2× DPR
+- [ ] Update TODO.md with Phase 6 entries

@@ -14,7 +14,13 @@
   --color-bg:          #f8f4fb;
   --color-topbar-bg:   #ede8f5;
 
-  --tile-size: 48px;
+  --tile-size: clamp(44px, 10vw, 48px);
+
+  --tile-hidden-base:     #ffb7b2;
+  --tile-hidden-light:    #ffd4d2;
+  --tile-hidden-dark:     #c87070;
+  --tile-revealed-bg:     #e8a8a0;
+  --tile-revealed-border: #c07870;
 }
 
 body {
@@ -31,11 +37,15 @@ body {
   align-items: center;
   width: calc(var(--tile-size) * 10);
   background: var(--color-topbar-bg);
-  padding: 8px;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--color-lavender);
 }
 
 #mine-counter {
   flex: 1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: #5c3a5a;
 }
 
 #mascot {
@@ -62,36 +72,81 @@ body {
   height: var(--tile-size);
   background: #ddd;
   border: 1px solid #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: calc(var(--tile-size) * 0.29);
+  user-select: none;
   image-rendering: -moz-crisp-edges;
   image-rendering: pixelated;
 }
 
-/* === Tile state classes (Phase 3) === */
+/* === Tile state classes (Phase 4) === */
 
 .tile--hidden {
-  background: var(--color-peach);
+  background:   var(--tile-hidden-base);
+  border-color: var(--tile-hidden-base);
+  box-shadow:
+    inset  2px  2px 0 0 var(--tile-hidden-light),
+    inset -2px -2px 0 0 var(--tile-hidden-dark);
   cursor: pointer;
 }
 
 .tile--revealed {
-  background: #e8d8c0;
-  cursor: default;
+  background:   var(--tile-revealed-bg);
+  border-color: var(--tile-revealed-border);
+  box-shadow:   none;
+  cursor:       default;
+  text-shadow:  1px 1px 0 rgba(0, 0, 0, 0.45);
 }
 
 .tile--flagged {
-  background: var(--color-peach);
+  background:   var(--tile-hidden-base);
+  border-color: var(--tile-hidden-base);
+  box-shadow:
+    inset  2px  2px 0 0 var(--tile-hidden-light),
+    inset -2px -2px 0 0 var(--tile-hidden-dark);
   cursor: pointer;
 }
 
+.tile--flagged::before {
+  content: '★';
+  color: var(--color-lavender);
+  font-size: calc(var(--tile-size) * 0.45);
+  line-height: 1;
+}
+
 .tile--mine {
-  background: #f4827a;
-  cursor: default;
+  background:   #f4827a;
+  border-color: #d06060;
+  box-shadow:   none;
+  cursor:       default;
 }
 
 .tile--wrong-flag {
-  background: #f4827a;
-  cursor: default;
+  background:   #f4827a;
+  border-color: #d06060;
+  box-shadow:   none;
+  cursor:       default;
 }
+
+.tile--wrong-flag::before {
+  content: '✕';
+  color: #8b0000;
+  font-size: calc(var(--tile-size) * 0.4);
+  font-family: system-ui, sans-serif;
+}
+
+/* === Number colors (§4.3) === */
+.tile--revealed[data-count="1"] { color: #6ec6e6; }
+.tile--revealed[data-count="2"] { color: #5ecb9e; }
+.tile--revealed[data-count="3"] { color: #f4827a; }
+.tile--revealed[data-count="4"] { color: #9b84d4; }
+.tile--revealed[data-count="5"] { color: #e8c43a; }
+.tile--revealed[data-count="6"] { color: #3db8b8; }
+.tile--revealed[data-count="7"] { color: #e8699a; }
+.tile--revealed[data-count="8"] { color: #aaaaaa; }
 
 /* === Game end state indicators (Phase 3 placeholders) === */
 
