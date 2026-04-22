@@ -65,19 +65,32 @@
 - [x] Contrast check: document pass/fail for all 8 number colors (≥ 3:1)
 - [x] Update TODO.md with Phase 5 entries
 
-## Phase 5 — Sprites
+## Phase 5 — Sprites ✅
 
-- [ ] Implement flag sprite: coral pink pennant, white stick, star tip
-- [ ] Implement incorrect flag indicator: red × over flag, shown on loss for wrong flags only
-- [ ] Implement intact donut sprite (for passive mine reveal on loss)
-- [ ] Implement triggered donut: same donut, hot-pink/red tile background
-- [ ] Implement mascot neutral state sprite
-- [ ] Implement mascot surprised state sprite
-- [ ] Implement mascot win state sprite (sparkly eyes, no animation yet)
-- [ ] Implement mascot loss state sprite (crying, no animation yet)
-- [ ] Wire mascot state class changes: mousedown on tile → surprised
-- [ ] Wire mascot revert on mouseup/mouseleave if game in progress
-- [ ] Wire mascot win/loss state from game event
-- [ ] Verify mascot button click does NOT trigger surprised state
-- [ ] Verify all sprites render sharply at 1× and 2× DPR
-- [ ] Update TODO.md with Phase 6 entries
+- [x] Implement flag sprite: coral pink pennant, white stick, star tip
+- [x] Implement incorrect flag indicator: red × over flag, shown on loss for wrong flags only
+- [x] Implement intact donut sprite (for passive mine reveal on loss)
+- [x] Implement triggered donut: same donut, hot-pink/red tile background
+- [x] Implement mascot neutral state sprite
+- [x] Implement mascot surprised state sprite
+- [x] Implement mascot win state sprite (sparkly eyes, no animation yet)
+- [x] Implement mascot loss state sprite (crying, no animation yet)
+- [x] Wire mascot state class changes: mousedown on tile → surprised
+- [x] Wire mascot revert on mouseup/mouseleave if game in progress
+- [x] Wire mascot win/loss state from game event
+- [x] Verify mascot button click does NOT trigger surprised state
+- [x] Verify all sprites render sharply at 1× and 2× DPR
+- [x] Update TODO.md with Phase 6 entries
+
+## Phase 6 — Mobile Input
+
+- [ ] Implement long-press detection: 400 ms timer on touchstart
+- [ ] Clear timer on touchend (< 400 ms = tap = reveal)
+- [ ] Clear timer on touchmove if displacement > 10 px
+- [ ] Clear timer on touchcancel
+- [ ] Wire long-press → toggleFlag()
+- [ ] Wire tap → revealTile() (only if game in progress and tile is hidden)
+- [ ] Apply touch-action: none to .tile
+- [ ] Apply user-select: none and -webkit-touch-callout: none to .tile
+- [ ] Add navigator.vibrate(10) on flag toggle with feature check and try/catch
+- [ ] Suppress contextmenu on #grid only (event.preventDefault)

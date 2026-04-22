@@ -1,3 +1,49 @@
+## Phase 5 — Sprites ✅
+
+**Completed**: 2026-04-22
+
+### Deliverables
+- `render.js` — module-level state (`_triggeredIdx`, `_mascotState`); 3 SVG sprite constants (`SVG_FLAG`, `SVG_WRONG_FLAG`, `SVG_DONUT`); updated `render()` with change-detection and `innerHTML` SVG injection; `mousedown`/`mouseup` listeners for surprised state; `revealTile()` return value captured for triggered-mine index; mascot click resets state before new game
+- `style.css` — removed `::before` pseudo-element rules for flagged/wrong-flag; updated `#mascot` rule (removed `font-size`/`line-height`); added `.tile--mine[data-triggered="true"]` rule (hot-pink bg); added `.mascot-face { display:none }` + 4 face-state selectors
+- `index.html` — replaced `🍩` emoji with static 48×48 mascot SVG; 4 `<g class="mascot-face mascot-face--[state]">` face groups; button initial class `mascot--neutral`
+
+### Architecture
+- **Sprite technique**: `innerHTML = SVG_*` constants — 16×16 `viewBox`, `shape-rendering="crispEdges"`, 3× scale at 48px tile size; all `<rect>` pixel art
+- **Change detection**: tile skipped if `el.dataset.state === vs && isTriggered === prevTriggered` — prevents SVG re-parse, protects future CSS animations (Phase 7)
+- **Triggered mine**: `_triggeredIdx` captures board index on loss; `data-triggered="true"` attribute + CSS hot-pink override distinguishes clicked mine from passive mines
+- **Mascot state machine**: `_mascotState` = persistent (`neutral`/`win`/`loss`); surprised is transient (direct DOM, no state change); `mousedown` on `.tile` → surprised; `document.mouseup` → restore; win/loss detected on first render with new phase via `alreadyWon`/`alreadyLost` guards
+- **Mascot click guard**: `mousedown` listener is on `#grid` — mascot clicks never bubble to the grid; no additional guard needed
+- **Face switching**: static SVG in `index.html`; `render()` sets only `mascot.className`; CSS selectors show/hide the correct `<g>` group
+
+### Sprite color palette
+| Sprite        | Colors                                          |
+|---------------|-------------------------------------------------|
+| Flag          | `#f0f0f0` stick, `#f4827a` pennant, `#fffacd` tip |
+| Wrong-flag    | Flag + `#cc1111` × lines                        |
+| Donut         | `#c7b4f0` frosting, `#ffb7b2` ring, `#b5ead7`/`#fffacd`/`#aec6cf` sprinkles |
+| Mascot faces  | `#7a5070` features, `#f8f4fb` surprised mouth   |
+| Triggered bg  | `#ff3355` / `#cc1133` border                    |
+
+### Verification
+- 12/12 grep checks passed (G1–G12)
+- 29/29 Node.js structural assertions passed (zero FAIL)
+- `game.js` diff: 0 bytes (unchanged)
+- Phase 4 `::before` rules confirmed removed from `style.css`
+- No emoji donut remaining in `index.html`
+
+### Decisions recorded
+- `innerHTML` chosen over `<img src="data:image/svg+xml,...">` for simpler implementation and guaranteed crisp rendering without CORS issues
+- Surprised state is transient (direct className write, no `_mascotState` mutation) so `mouseup` always correctly restores from persistent state; win/loss faces persist across mouseup events
+- All SVG pixel art uses only `<rect>` elements (+ `<line>` for × cross) — no `<path>` curves, matching the pixel-art aesthetic
+
+### Deferred to later phases
+- Triggered mine explosion animation → Phase 7
+- Win celebration animation (star burst, tile ripple) → Phase 7
+- Touch long-press flagging → Phase 6
+- Tile reveal animation → Phase 7
+
+---
+
 ## Phase 4 — Visual Theme ✅
 
 **Completed**: 2026-04-22

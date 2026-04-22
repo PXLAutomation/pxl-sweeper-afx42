@@ -12,7 +12,69 @@
 <body>
   <div id="status-bar" role="banner">
     <div id="mine-counter" aria-label="Mines remaining">15</div>
-    <button id="mascot" aria-label="New Game">🍩</button>
+    <button id="mascot" class="mascot--neutral" aria-label="New Game">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+           style="width:48px;height:48px;display:block"
+           shape-rendering="crispEdges">
+        <!-- Donut body: frosting (lavender) top arc -->
+        <rect x="6" y="2" width="4" height="1" fill="#c7b4f0"/>
+        <rect x="4" y="3" width="8" height="1" fill="#c7b4f0"/>
+        <rect x="3" y="4" width="3" height="1" fill="#c7b4f0"/>
+        <rect x="10" y="4" width="3" height="1" fill="#c7b4f0"/>
+        <rect x="3" y="5" width="2" height="1" fill="#c7b4f0"/>
+        <rect x="11" y="5" width="2" height="1" fill="#c7b4f0"/>
+        <!-- Sprinkles -->
+        <rect x="7" y="2" width="1" height="1" fill="#b5ead7"/>
+        <rect x="10" y="3" width="1" height="1" fill="#fffacd"/>
+        <rect x="4" y="4" width="1" height="1" fill="#aec6cf"/>
+        <!-- Donut body: peach ring (sides + bottom) -->
+        <rect x="3" y="6" width="2" height="3" fill="#ffb7b2"/>
+        <rect x="11" y="6" width="2" height="3" fill="#ffb7b2"/>
+        <rect x="3" y="9" width="3" height="1" fill="#ffb7b2"/>
+        <rect x="10" y="9" width="3" height="1" fill="#ffb7b2"/>
+        <rect x="4" y="10" width="8" height="1" fill="#ffb7b2"/>
+        <rect x="6" y="11" width="4" height="1" fill="#ffb7b2"/>
+        <!-- Face: Neutral — two small eyes + flat mouth -->
+        <g class="mascot-face mascot-face--neutral">
+          <rect x="5" y="6" width="2" height="1" fill="#7a5070"/>
+          <rect x="9" y="6" width="2" height="1" fill="#7a5070"/>
+          <rect x="6" y="8" width="4" height="1" fill="#7a5070"/>
+        </g>
+        <!-- Face: Surprised — wide eyes + open O mouth -->
+        <g class="mascot-face mascot-face--surprised">
+          <rect x="5" y="5" width="2" height="2" fill="#7a5070"/>
+          <rect x="9" y="5" width="2" height="2" fill="#7a5070"/>
+          <rect x="6" y="7" width="4" height="2" fill="#7a5070"/>
+          <rect x="7" y="8" width="2" height="1" fill="#f8f4fb"/>
+        </g>
+        <!-- Face: Win — star eyes + big smile -->
+        <g class="mascot-face mascot-face--win">
+          <rect x="5" y="6" width="1" height="1" fill="#7a5070"/>
+          <rect x="4" y="5" width="3" height="1" fill="#7a5070"/>
+          <rect x="5" y="4" width="1" height="1" fill="#7a5070"/>
+          <rect x="9" y="6" width="1" height="1" fill="#7a5070"/>
+          <rect x="8" y="5" width="3" height="1" fill="#7a5070"/>
+          <rect x="9" y="4" width="1" height="1" fill="#7a5070"/>
+          <rect x="5" y="8" width="1" height="1" fill="#7a5070"/>
+          <rect x="10" y="8" width="1" height="1" fill="#7a5070"/>
+          <rect x="6" y="9" width="4" height="1" fill="#7a5070"/>
+        </g>
+        <!-- Face: Loss — X eyes + frown -->
+        <g class="mascot-face mascot-face--loss">
+          <rect x="5" y="5" width="1" height="1" fill="#7a5070"/>
+          <rect x="6" y="6" width="1" height="1" fill="#7a5070"/>
+          <rect x="6" y="5" width="1" height="1" fill="#7a5070"/>
+          <rect x="5" y="6" width="1" height="1" fill="#7a5070"/>
+          <rect x="9" y="5" width="1" height="1" fill="#7a5070"/>
+          <rect x="10" y="6" width="1" height="1" fill="#7a5070"/>
+          <rect x="10" y="5" width="1" height="1" fill="#7a5070"/>
+          <rect x="9" y="6" width="1" height="1" fill="#7a5070"/>
+          <rect x="7" y="7" width="2" height="1" fill="#7a5070"/>
+          <rect x="6" y="8" width="1" height="1" fill="#7a5070"/>
+          <rect x="9" y="8" width="1" height="1" fill="#7a5070"/>
+        </g>
+      </svg>
+    </button>
     <div class="status-bar__spacer"></div>
   </div>
 

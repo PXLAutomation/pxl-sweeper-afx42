@@ -52,8 +52,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 32px;
-  line-height: 1;
+  line-height: 0;
 }
 
 .status-bar__spacer {
@@ -110,12 +109,6 @@ body {
   cursor: pointer;
 }
 
-.tile--flagged::before {
-  content: '★';
-  color: var(--color-lavender);
-  font-size: calc(var(--tile-size) * 0.45);
-  line-height: 1;
-}
 
 .tile--mine {
   background:   #f4827a;
@@ -131,12 +124,6 @@ body {
   cursor:       default;
 }
 
-.tile--wrong-flag::before {
-  content: '✕';
-  color: #8b0000;
-  font-size: calc(var(--tile-size) * 0.4);
-  font-family: system-ui, sans-serif;
-}
 
 /* === Number colors (§4.3) === */
 .tile--revealed[data-count="1"] { color: #6ec6e6; }
@@ -177,3 +164,16 @@ body.state--loss #grid {
   white-space: nowrap;
   border: 0;
 }
+
+/* === Triggered mine (Phase 5) === */
+.tile--mine[data-triggered="true"] {
+  background:   #ff3355;
+  border-color: #cc1133;
+}
+
+/* === Mascot face states (Phase 5) === */
+.mascot-face { display: none; }
+#mascot.mascot--neutral   .mascot-face--neutral   { display: block; }
+#mascot.mascot--surprised .mascot-face--surprised { display: block; }
+#mascot.mascot--win       .mascot-face--win       { display: block; }
+#mascot.mascot--loss      .mascot-face--loss      { display: block; }
